@@ -1,0 +1,33 @@
+
+RG="AKSTest"
+AKSRG="AKSRG"
+Cluster="MyTestManagedCluster"
+
+az login
+#az group create --location westeurope --resource-group $RG \
+#    --tag Service=Test Pupose=Test
+
+
+#az aks create -g $RG -n $Cluster \
+#    --ssh-key-value /home/saket/.ssh/id_rsa.pub
+
+az aks delete -n MyTestManagedCluster -g $RG --yes
+az aks create -g $RG -n $Cluster \
+    --ssh-key-value /home/saket/.ssh/id_rsa.pub \
+    --node-count 2
+
+az aks list -o table
+
+az aks get-credentials --name $Cluster -g $RG
+
+kubectl config view -o json > output.json
+python -c 'import json
+data = {}
+with open("output.json","r") as reader:
+    data = json.load(reader)
+print ("data['kind']:", data['kind'])'
+kubectl get nodes -o wide
+
+
+
+
