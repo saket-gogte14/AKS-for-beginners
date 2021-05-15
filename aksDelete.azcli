@@ -1,0 +1,6 @@
+
+RG="AKSTest"
+AKSRG="AKSRG"
+Cluster="MyTestManagedCluster"
+
+az aks delete -n MyTestManagedCluster -g $RG --yes
