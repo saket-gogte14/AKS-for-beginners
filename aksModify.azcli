@@ -1,0 +1,20 @@
+RG="AKSTest"
+AKSRG="AKSRG"
+Cluster="MyTestManagedCluster"
+
+#az login
+
+az aks create -g $RG -n $Cluster \
+    --ssh-key-value /home/saket/.ssh/id_rsa.pub \
+    --node-count 2
+
+
+az aks get-credentials --name $Cluster -g $RG
+
+kubectl get nodes
+az aks show --resource-group $RG --name $Cluster --query agentPoolProfiles[0].name
+
+nodepool=$(az aks show --resource-group $RG --name $Cluster --query agentPoolProfiles[0].name)
+echo $nodepool
+
+az aks scale --resource-group $RG --name $Cluster --node-count 1 --nodepool-name nodepool1
