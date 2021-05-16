@@ -3,7 +3,7 @@ RG="AKSTest"
 AKSRG="AKSRG"
 Cluster="MyTestManagedCluster"
 
-az login
+#az login
 #az group create --location westeurope --resource-group $RG \
 #    --tag Service=Test Pupose=Test
 
@@ -11,9 +11,14 @@ az login
 #az aks create -g $RG -n $Cluster \
 #    --ssh-key-value /home/saket/.ssh/id_rsa.pub
 
-az aks delete -n MyTestManagedCluster -g $RG --yes
-az aks create -g $RG -n $Cluster \
+#az aks delete -n MyTestManagedCluster -g $RG --yes
+az aks create --name $Cluster \
     --ssh-key-value /home/saket/.ssh/id_rsa.pub \
+    --os-type Windows \
+    --name npwin \
+    --resource-group $RG \
+    --windows-admin-password "****" \
+    --windows-admin-username azure \
     --node-count 2
 
 az aks list -o table

@@ -18,3 +18,5 @@ nodepool=$(az aks show --resource-group $RG --name $Cluster --query agentPoolPro
 echo $nodepool
 
 az aks scale --resource-group $RG --name $Cluster --node-count 1 --nodepool-name nodepool1
+
+kubectl get nodes

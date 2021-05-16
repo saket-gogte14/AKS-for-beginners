@@ -1,0 +1,18 @@
+RG="AKSTest"
+AKSRG="AKSRG"
+Cluster="MyTestManagedCluster"
+
+az login
+
+az aks create -g $RG -n $Cluster \
+#    --ssh-key-value /home/saket/.ssh/id_rsa.pub \
+#    --os-type Windows \
+#    --node-count 2
+
+az aks nodepool add \
+    --resource-group $RG \
+    --cluster-name $Cluster \
+    --os-type Windows \
+    --name npwin \
+    --resource-group $RG \
+    --node-count 1
