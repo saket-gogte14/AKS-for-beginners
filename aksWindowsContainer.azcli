@@ -11,7 +11,7 @@ az aks create -g $RG -n $Cluster \
 
 az aks nodepool add \
     --resource-group $RG \
-    --cluster-name $Cluster \
+    --cluster-name npwin \
     --os-type Windows \
     --name npwin \
     --resource-group $RG \

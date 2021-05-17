@@ -1,7 +1,6 @@
 
 RG="AKSTest"
-AKSRG="AKSRG"
-Cluster="MyTestManagedCluster"
+Cluster="npwin"
 
 #az login
 #az group create --location westeurope --resource-group $RG \
@@ -14,12 +13,12 @@ Cluster="MyTestManagedCluster"
 #az aks delete -n MyTestManagedCluster -g $RG --yes
 az aks create --name $Cluster \
     --ssh-key-value /home/saket/.ssh/id_rsa.pub \
-    --os-type Windows \
     --name npwin \
     --resource-group $RG \
-    --windows-admin-password "****" \
+    --windows-admin-password "Password_43210" \
     --windows-admin-username azure \
-    --node-count 2
+    --node-count 2 \
+    --network-plugin azure
 
 az aks list -o table
 
@@ -31,8 +30,8 @@ data = {}
 with open("output.json","r") as reader:
     data = json.load(reader)
 print ("data['kind']:", data['kind'])'
-kubectl get nodes -o wide
+kubectl get nodes -o wide 
 
-
+kubectl apply -f hellow-world-container.yaml
 
 

@@ -2,5 +2,5 @@
 RG="AKSTest"
 AKSRG="AKSRG"
 Cluster="MyTestManagedCluster"
-
+az login
 az aks delete -n MyTestManagedCluster -g $RG --yes
