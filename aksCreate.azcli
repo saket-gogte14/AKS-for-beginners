@@ -13,9 +13,8 @@ Cluster="npwin"
 #az aks delete -n MyTestManagedCluster -g $RG --yes
 az aks create --name $Cluster \
     --ssh-key-value /home/saket/.ssh/id_rsa.pub \
-    --name npwin \
     --resource-group $RG \
-    --windows-admin-password "Password_43210" \
+    --windows-admin-password "****" \
     --windows-admin-username azure \
     --node-count 2 \
     --network-plugin azure
