@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: Test-Deployment
+  name: testdeployment
 spec:
   selector:
     matchLabels:
-      app: hello-world
-  replicas: 2 # tells deployment to run 2 pods matching the template
+      app: helloworld
+  replicas: 3 # tells deployment to run 2 pods matching the template
   template:
     metadata:
       labels:
-        app: hello-world
+        app: helloworld
     spec:
       containers:
-      - name: hello-world
-        image: hub.docker.com/saket14/saketrepo:1.0
+      - name: helloworld
+        image: docker.io/saket14/sakethelloworld:1.1
         ports:
         - containerPort: 8080
