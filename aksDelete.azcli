@@ -1,6 +1,6 @@
 
 RG="AKSTest"
 AKSRG="AKSRG"
-Cluster="MyTestManagedCluster"
-az login
-az aks delete -n MyTestManagedCluster -g $RG --yes
+Cluster="npwin"
+#az login
+az aks delete -n $Cluster -g $RG --yes

@@ -1,0 +1,17 @@
+
+RG="AKSTest"
+VM="mySpotVM"
+Cluster="npwin"
+
+az vm create \
+    --resource-group $RG \
+    --location southeastasia \
+    --name $VM \
+    --image RHEL \
+    --size Standard_B1ls \
+    --ssh-key-value /home/saket/.ssh/id_rsa.pub \
+    --priority Spot \
+    --max-price -1 \
+	--eviction-polic Deallocate
+
+az vm list
