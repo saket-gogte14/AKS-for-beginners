@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: testdeployment
+spec:
+  selector:
+    matchLabels:
+      app: rubyhelloworld
+  replicas: 3 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: rubyhelloworld
+    spec:
+      containers:
+      - name: rubyhelloworld
+        image: docker.io/saket14/rubyhelloworld:1.0
+        ports:
+        - containerPort: 80

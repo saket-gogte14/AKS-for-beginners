@@ -1,0 +1,5 @@
+az lock create --lock-type CanNotDelete \
+               --resource-group AKSTest
+
+az lock create --lock-type CanNotDelete \
+               --resource-group AKSTest
