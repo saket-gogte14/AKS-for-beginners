@@ -19,7 +19,7 @@ kubectl get nodes
 #Detail out the Pool profiles
 az aks show --resource-group $RG --name $Cluster --query agentPoolProfiles[0].name
 
-#Detail out the nodepool name and scale it manually
+#Detail out the nodepool name and scale it horizontally manually
 
 nodepool=$(az aks show --resource-group $RG --name $Cluster --query agentPoolProfiles[0].name)
 echo $nodepool
