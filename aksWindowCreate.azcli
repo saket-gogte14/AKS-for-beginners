@@ -37,4 +37,7 @@ print ("data['kind']:", data['kind'])'
 kubectl get nodes -o wide 
 
 #Kubectl apply command to deploy the pods
-kubectl apply -f hellow-world-container.yaml
+kubectl apply -f hello-world-container.yaml
+
+#Deploy the service with LoadBalancer
+kubectl apply -f hello-world-service.yaml
