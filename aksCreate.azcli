@@ -2,15 +2,15 @@
 RG="AKSTest"
 Cluster="npwin"
 
-#az login
-#az group create --location westeurope --resource-group $RG \
-#    --tag Service=Test Pupose=Test
+#Login to Azure with your creds
+az login
+
+#Create resource group
+az group create --location westeurope --resource-group $RG \
+    --tag Service=Test Pupose=Test
 
 
-#az aks create -g $RG -n $Cluster \
-#    --ssh-key-value /home/saket/.ssh/id_rsa.pub
-
-#az aks delete -n MyTestManagedCluster -g $RG --yes
+#Command to create AKS with a windows nodepool
 az aks create --name $Cluster \
     --ssh-key-value /home/saket/.ssh/id_rsa.pub \
     --resource-group $RG \
@@ -19,18 +19,22 @@ az aks create --name $Cluster \
     --node-count 2 \
     --network-plugin azure
 
+# List the AKS details
 az aks list -o table
 
+#Get the credentials into a fermeral file
 az aks get-credentials --name $Cluster -g $RG
 
+#Kubectl command to view the jsonoutput and python command to Kind of nodes
 kubectl config view -o json > output.json
 python -c 'import json
 data = {}
 with open("output.json","r") as reader:
     data = json.load(reader)
 print ("data['kind']:", data['kind'])'
+
+#Kubectl command to get nodes
 kubectl get nodes -o wide 
 
+#Kubectl apply command to deploy the pods
 kubectl apply -f hellow-world-container.yaml
-
-
