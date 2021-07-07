@@ -1,3 +1,5 @@
+# After creating the Azure Kuberenetes Service , you dont want anyone to delete it, thus adding locks
+
 az lock create --lock-type CanNotDelete \
                --resource-group AKSTest
 
