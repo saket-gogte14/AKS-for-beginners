@@ -2,21 +2,29 @@ RG="AKSTest"
 AKSRG="AKSRG"
 Cluster="MyTestManagedCluster"
 
-#az login
+#Login to Azure
+az login
 
+#Create default Linux pool
 az aks create -g $RG -n $Cluster \
     --ssh-key-value /home/saket/.ssh/id_rsa.pub \
     --node-count 2
 
-
+#Get credentials and store in a femeral file
 az aks get-credentials --name $Cluster -g $RG
 
+#Get the nodes
 kubectl get nodes
+
+#Detail out the Pool profiles
 az aks show --resource-group $RG --name $Cluster --query agentPoolProfiles[0].name
+
+#Detail out the nodepool name and scale it manually
 
 nodepool=$(az aks show --resource-group $RG --name $Cluster --query agentPoolProfiles[0].name)
 echo $nodepool
 
 az aks scale --resource-group $RG --name $Cluster --node-count 1 --nodepool-name nodepool1
 
+#Check the reflection of manual scaling
 kubectl get nodes
