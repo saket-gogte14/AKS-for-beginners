@@ -2,5 +2,9 @@
 RG="AKSTest"
 AKSRG="AKSRG"
 Cluster="npwin"
-#az login
+
+#Login to azure
+az login
+
+#delete the AKS service 
 az aks delete -n $Cluster -g $RG --yes
